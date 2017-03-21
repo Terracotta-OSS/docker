@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  terracotta-net:
+# following line to uncomment when using a "real" Docker swarm, not Docker Swarm mode
+    driver: overlay
+
+services:
+  client:
+#    build: sample-ehcache-client/
+    image: terracotta/sample-ehcache-client:4.3.2
+    networks:
+     - terracotta-net
+    environment:
+     - TERRACOTTA_SERVER_URL=terracotta_1:9510,terracotta_2:9510
+
+  terracotta_1:
+    hostname: terracotta_1
+#    build: server/
+    image: terracotta/terracotta-server-oss:4.3.2
+    environment:
+     - TC_SERVER1=terracotta_1
+     - TC_SERVER2=terracotta_2
+    networks:
+     - terracotta-net
+    ports:
+     - "9540:9540"
+
+  terracotta_2:
+    hostname: terracotta_2
+#    build: server/
+    image: terracotta/terracotta-server-oss:4.3.2
+    environment:
+     - TC_SERVER1=terracotta_1
+     - TC_SERVER2=terracotta_2
+    networks:
+     - terracotta-net
+    ports:
+     - "19540:9540"
