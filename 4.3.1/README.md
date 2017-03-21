@@ -39,3 +39,38 @@ Have a look at what they're up to :
 And also have a look at the current topology, using the management REST api :
 
     http://DOCKER_HOST:9540/tc-management-api/v2/agents/topologies
+    
+    
+### Orchestration example with Docker stack
+
+If you're using Docker swarm mode, you may want to use docker stack to deploy across all nodes part of your Docker swarm
+
+You can re use the same docker-compose.yml file :
+
+    docker stack deploy terracotta --compose-file docker-compose.yml
+    Creating network terracotta_terracotta-net
+    Creating service terracotta_terracotta_1
+    Creating service terracotta_terracotta_2
+    Creating service terracotta_client
+
+    $ docker stack ps terracotta
+    ID            NAME                       IMAGE                                   NODE  DESIRED STATE  CURRENT STATE           ERROR  PORTS
+    i88gj5reok4x  terracotta_client.1        terracotta/sample-ehcache-client:4.3.1  moby  Running        Running 23 seconds ago         
+    hrzyj5z2uwkh  terracotta_terracotta_2.1  terracotta/terracotta-server-oss:4.3.1  moby  Running        Running 24 seconds ago         
+    944cftq26cis  terracotta_terracotta_1.1  terracotta/terracotta-server-oss:4.3.1  moby  Running        Running 25 seconds ago      
+
+You want to scale, right ? 
+
+    docker service scale terracotta_client=4
+    terracotta_client scaled to 4
+
+Wondering what those services are up to ?
+
+    docker service logs -f terracotta_client
+    
+And also you can have a look at the current topology, using the management REST api :
+
+    http://DOCKER_HOST:9540/tc-management-api/v2/agents/topologies
+    
+    
+     
