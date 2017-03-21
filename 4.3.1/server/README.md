@@ -28,6 +28,14 @@ You can also load [http://DOCKER_HOST:9510/config](http://DOCKER_HOST:9510/confi
 
 It's now ready and waiting for clients !
 
+#### How to build this image
+
+To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/4.3.1/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
+
+    $ cd 4.3.1/server
+    $ docker build -t terracotta-server-oss:4.3.1 .
+
+
 #### Getting serious : one active, and one passive - multi-host networking
 
 ##### Setting up the hosts
@@ -106,20 +114,19 @@ mhs-demo2     -        virtualbox   Running   tcp://192.168.99.107:2376   mhs-de
 
 ##### Starting the containers !
 
-    $ docker run --hostname tsa --name tsa -d -e TC_SERVER1=tsa -e TC_SERVER2=tsa2 --net=my-net --env="constraint:node==mhs-demo1" anthonydahanne/terracotta-server-oss:4.3.1
-    $ docker run --hostname tsa2 --name tsa2 -d -e TC_SERVER2=tsa2 -e TC_SERVER1=tsa --net=my-net --env="constraint:node==mhs-demo2" anthonydahanne/terracotta-server-oss:4.3.1
-    $ docker run --name petclinic -d --net=my-net --env="constraint:node==mhs-demo0" -p 9966:9966 anthonydahanne/spring-petclinic-clustered:4.3.1
+    $ docker run --hostname tsa --name tsa -d -e TC_SERVER1=tsa -e TC_SERVER2=tsa2 --net=my-net --env="constraint:node==mhs-demo1" terracotta/terracotta-server-oss:4.3.1
+    $ docker run --hostname tsa2 --name tsa2 -d -e TC_SERVER2=tsa2 -e TC_SERVER1=tsa --net=my-net --env="constraint:node==mhs-demo2" terracotta/terracotta-server-oss:4.3.1
+    $ docker run --name petclinic -d --net=my-net --env="constraint:node==mhs-demo0" terracotta/sample-ehcache-client:4.3.1
 
 You should end up with something similar to :
 ````
 $ docker ps
 CONTAINER ID        IMAGE                                             COMMAND                  CREATED             STATUS              PORTS                           NAMES
-8dbf24cfaae3        anthonydahanne/spring-petclinic-clustered:4.3.1   "mvn tomcat7:run -Dts"   56 seconds ago      Up 55 seconds       192.168.99.109:9966->9966/tcp   mhs-demo0/petclinic
-b7e10058a909        anthonydahanne/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   3 minutes ago       Up 3 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo1/tsa2
-8999a50ef131        anthonydahanne/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   9 minutes ago       Up 9 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo2/tsa
+8dbf24cfaae3        terracotta/sample-ehcache-client:4.3.1   "mvn tomcat7:run -Dts"   56 seconds ago      Up 55 seconds                                            mhs-demo0/petclinic
+b7e10058a909        terracotta/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   3 minutes ago       Up 3 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo1/tsa2
+8999a50ef131        terracotta/terracotta-server-oss:4.3.1        "/bin/sh -c 'sed -i -"   9 minutes ago       Up 9 minutes        9510/tcp, 9530/tcp, 9540/tcp    mhs-demo2/tsa
 ````
 
-Now go to http://192.168.99.109:9966/petclinic/
 
 Want to make sure it's a cluster ? How about restarting a server ?
 
@@ -135,10 +142,3 @@ and then :
 
 Congratulations ! You successfully started an Active / Passive Terracotta Cluster with one client !
 
-
-#### How to build this image
-
-To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/4.3.1/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
-
-    $ cd 4.3.1/server
-    $ docker build -t terracotta-server-oss:4.3.1 .
