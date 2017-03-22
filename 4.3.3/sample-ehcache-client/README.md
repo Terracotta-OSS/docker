@@ -32,7 +32,7 @@ You can run a terracotta server using (provided you built the terracotta image) 
 
 and then re try running the client, with :
 
-    docker run -d --link terracotta:terracotta --name client client
+    docker run -d --link terracotta:terracotta --name client terracotta/sample-ehcache-client:4.3.3
     
 and checkout what's happening with :
 
