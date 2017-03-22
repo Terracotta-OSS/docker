@@ -15,14 +15,14 @@ Just run :
 
     docker-compose up -d
     
-All services (client, terracotta_1, terracotta_2) should be running :
+All services (client, terracotta-1, terracotta-2) should be running :
    
     docker-compose ps
            Name                     Command               State                      Ports                    
     ---------------------------------------------------------------------------------------------------------
     431_client_1         java ClientDoingInsertions ...   Up                                                  
-    431_terracotta_1_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp, 0.0.0.0:9540->9540/tcp  
-    431_terracotta_2_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp, 0.0.0.0:19540->9540/tcp 
+    431_terracotta-1_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp, 0.0.0.0:9540->9540/tcp  
+    431_terracotta-2_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp, 0.0.0.0:19540->9540/tcp 
 
 You can scale the clients :
 
@@ -49,15 +49,15 @@ You can re use the same docker-compose.yml file :
 
     docker stack deploy terracotta --compose-file docker-compose.yml
     Creating network terracotta_terracotta-net
-    Creating service terracotta_terracotta_1
-    Creating service terracotta_terracotta_2
+    Creating service terracotta_terracotta-1
+    Creating service terracotta_terracotta-2
     Creating service terracotta_client
 
     $ docker stack ps terracotta
     ID            NAME                       IMAGE                                   NODE  DESIRED STATE  CURRENT STATE           ERROR  PORTS
     i88gj5reok4x  terracotta_client.1        terracotta/sample-ehcache-client:4.3.3  moby  Running        Running 23 seconds ago         
-    hrzyj5z2uwkh  terracotta_terracotta_2.1  terracotta/terracotta-server-oss:4.3.3  moby  Running        Running 24 seconds ago         
-    944cftq26cis  terracotta_terracotta_1.1  terracotta/terracotta-server-oss:4.3.3  moby  Running        Running 25 seconds ago      
+    hrzyj5z2uwkh  terracotta_terracotta-2.1  terracotta/terracotta-server-oss:4.3.3  moby  Running        Running 24 seconds ago         
+    944cftq26cis  terracotta_terracotta-1.1  terracotta/terracotta-server-oss:4.3.3  moby  Running        Running 25 seconds ago      
 
 You want to scale, right ? 
 

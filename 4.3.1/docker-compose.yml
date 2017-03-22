@@ -12,27 +12,27 @@ services:
     networks:
      - terracotta-net
     environment:
-     - TERRACOTTA_SERVER_URL=terracotta_1:9510,terracotta_2:9510
+     - TERRACOTTA_SERVER_URL=terracotta-1:9510,terracotta-2:9510
 
-  terracotta_1:
-    hostname: terracotta_1
+  terracotta-1:
+    hostname: terracotta-1
 #    build: server/
     image: terracotta/terracotta-server-oss:4.3.1
     environment:
-     - TC_SERVER1=terracotta_1
-     - TC_SERVER2=terracotta_2
+     - TC_SERVER1=terracotta-1
+     - TC_SERVER2=terracotta-2
     networks:
      - terracotta-net
     ports:
      - "9540:9540"
 
-  terracotta_2:
-    hostname: terracotta_2
+  terracotta-2:
+    hostname: terracotta-2
 #    build: server/
     image: terracotta/terracotta-server-oss:4.3.1
     environment:
-     - TC_SERVER1=terracotta_1
-     - TC_SERVER2=terracotta_2
+     - TC_SERVER1=terracotta-1
+     - TC_SERVER2=terracotta-2
     networks:
      - terracotta-net
     ports:
