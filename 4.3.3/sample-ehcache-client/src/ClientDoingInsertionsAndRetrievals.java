@@ -27,7 +27,7 @@ public class ClientDoingInsertionsAndRetrievals {
       terracottaServerUrl = "terracotta:9510";
     }
 
-    System.out.println("**** Programatically configure an instance, configured to connect to : " + terracottaServerUrl + " ****");
+    System.out.println("**** Programmatically configure an instance, configured to connect to : " + terracottaServerUrl + " ****");
 
     Configuration managerConfiguration = new Configuration()
         .name("myCacheManager")
