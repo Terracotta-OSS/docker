@@ -2,7 +2,6 @@ version: '3'
 
 networks:
   terracotta-net:
-# following line to uncomment when using a "real" Docker swarm, not Docker Swarm mode
     driver: overlay
 
 services:
