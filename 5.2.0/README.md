@@ -1,4 +1,4 @@
-### Terracotta Server 5.2 Docker images
+### Terracotta Server 5.2.0 Docker images
 Instructions to build and execute are in those 2 sub folders :
 
  1. [server](/server/) : instructions to build and execute a Terracotta Server Array in Docker containers, according to several deployment scenarios
