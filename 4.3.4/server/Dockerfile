@@ -8,10 +8,10 @@ RUN apk --update add tar openssl ca-certificates bash
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 
 # downloading, untarring and removing the archive
-RUN wget -q https://d2zwv9pap9ylyd.cloudfront.net/terracotta-4.3.3.tar.gz \
+RUN wget -q https://d2zwv9pap9ylyd.cloudfront.net/terracotta-4.3.4.tar.gz \
   && mkdir /terracotta \
-  && tar xvzf terracotta-4.3.3.tar.gz -C /terracotta --strip-components=1 \
-  && rm terracotta-4.3.3.tar.gz
+  && tar xvzf terracotta-4.3.4.tar.gz -C /terracotta --strip-components=1 \
+  && rm terracotta-4.3.4.tar.gz
 
 
 ADD config/tc-config-single-node.xml /terracotta/server/config/
