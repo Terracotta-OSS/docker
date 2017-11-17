@@ -16,3 +16,6 @@
 #### Important notes
 
 Those instructions are targeted at Docker version 1.13 and onwards - your host needs to have at least 2GB of RAM
+Terracotta default ports changed from version 5.3 :
+ * tsa port (clients to servers) from 9510 to 9410 and
+ * group port (servers sync.) from 9530 to 9430

@@ -14,7 +14,7 @@ The current image is based on the [openjdk:8-jdk-alpine image](https://hub.docke
 
 ##### Quick start : one active node
 
-    docker run --name tc-server -p 9510:9510 -d terracotta/terracotta-server-oss:5.3.2
+    docker run --name tc-server -p 9410:9410 -d terracotta/terracotta-server-oss:5.3.2
 
 A quick look at the logs :
 
@@ -22,7 +22,7 @@ A quick look at the logs :
 
 Should return some logs ending with :
 
-    [TC] 2017-03-22 03:39:26,627 INFO - Terracotta Server instance has started up as ACTIVE node on 0:0:0:0:0:0:0:0:9510 successfully, and is now ready for work.
+    [TC] 2017-03-22 03:39:26,627 INFO - Terracotta Server instance has started up as ACTIVE node on 0:0:0:0:0:0:0:0:9410 successfully, and is now ready for work.
 
 It's now ready and waiting for clients !
 

@@ -28,8 +28,8 @@ Terracotta, Inc., a Software AG company
   <servers>
     <server host="TC_SERVER1" name="TC_SERVER1">
       <logs>stdout:</logs>
-      <tsa-port>9510</tsa-port>
-      <tsa-group-port>9530</tsa-group-port>
+      <tsa-port>9410</tsa-port>
+      <tsa-group-port>9430</tsa-group-port>
     </server>
     <server host="TC_SERVER2" name="TC_SERVER2">
       <logs>stdout:</logs>

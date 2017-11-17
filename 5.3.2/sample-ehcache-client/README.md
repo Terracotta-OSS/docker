@@ -4,7 +4,7 @@ Terracotta Server supports a distributed in-memory data-storage topology, which 
 
 The client java app connects to the Terracotta Server and starts putting and getting key/value mappings.
 
-You can have a look at its code at : src/ClientDoingInsertionsAndRetrievals.java ; it's configured to hold few elements (50) on heap, and of course use the Terracotta server at terracotta:9510 as its clustered tier.
+You can have a look at its code at : src/ClientDoingInsertionsAndRetrievals.java ; it's configured to hold few elements (50) on heap, and of course use the Terracotta server at terracotta:9410 as its clustered tier.
 
 The client will either insert or retrieve values every 0.1 seconds
 
@@ -17,18 +17,18 @@ You can start it up simply with :
 
 But you would get such an error message :
     
-    The environment variable TERRACOTTA_SERVER_URL was not set; using terracotta:9510 as the cluster url.
+    The environment variable TERRACOTTA_SERVER_URL was not set; using terracotta:9410 as the cluster url.
 
 followed by :
 
-    WARN - We couldn't load configuration data from the server at 'terracotta:9510'; retrying. (Error: terracotta.)
+    WARN - We couldn't load configuration data from the server at 'terracotta:9410'; retrying. (Error: terracotta.)
 
 
 That would be because you need a Terracotta server running.
 
 You can run a terracotta server using (provided you built the terracotta image) :
 
-    docker run -d -p 9510:9510 --name terracotta terracotta/terracotta-server-oss:5.3.2
+    docker run -d -p 9410:9410 --name terracotta terracotta/terracotta-server-oss:5.3.2
 
 and then re try running the client, with :
 

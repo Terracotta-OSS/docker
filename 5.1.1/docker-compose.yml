@@ -10,7 +10,7 @@ services:
 #    build: sample-ehcache-client/
     image: terracotta/sample-ehcache-client:5.1.1
     environment:
-     - TERRACOTTA_SERVER_URL=terracotta-1:9410,terracotta-2:9410
+     - TERRACOTTA_SERVER_URL=terracotta-1:9510,terracotta-2:9510
     networks:
      - terracotta-net
 

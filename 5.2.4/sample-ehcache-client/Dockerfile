@@ -29,7 +29,7 @@ WORKDIR /terracotta/
 
 ENV CLASSPATH ".:/terracotta/client/ehcache/*:/terracotta/client/lib/*"
 ENV OFFHEAP_RESOURCE1_NAME "offheap-1"
-ENV TERRACOTTA_SERVER_URL=terracotta:9410
+ENV TERRACOTTA_SERVER_URL=terracotta:9510
 
 RUN javac ClientDoingInsertionsAndRetrievals.java
 

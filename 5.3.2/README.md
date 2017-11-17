@@ -21,8 +21,8 @@ All services (client, terracotta-1, terracotta-2) should be running :
            Name                     Command               State                      Ports                    
     ---------------------------------------------------------------------------------------------------------
     431_client_1         java ClientDoingInsertions ...   Up                                                  
-    431_terracotta-1_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp 
-    431_terracotta-2_1   /bin/sh -c sed -i -r 's/OF ...   Up      9510/tcp, 9530/tcp
+    431_terracotta-1_1   /bin/sh -c sed -i -r 's/OF ...   Up      9410/tcp, 9410/tcp
+    431_terracotta-2_1   /bin/sh -c sed -i -r 's/OF ...   Up      9410/tcp, 9410/tcp
 
 You can scale the clients :
 

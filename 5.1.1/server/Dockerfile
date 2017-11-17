@@ -25,9 +25,9 @@ RUN addgroup -S terracotta && adduser -h /terracotta -s /bin/bash -G terracotta 
 WORKDIR /terracotta/server
 
 # the tsa port (used by the clients to connect to the cluster)
-EXPOSE 9410
+EXPOSE 9510
 # the group port (used to sync the passives with the active)
-EXPOSE 9430
+EXPOSE 9530
 
 # default values for offheap, that you can override when starting your container with docker run -e OFFHEAP_RESOURCE1_SIZE=512 for example
 ENV OFFHEAP_RESOURCE1_NAME "offheap-1"
