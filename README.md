@@ -13,6 +13,8 @@
 * [5.2.4](/5.2.4), matches Ehcache 3.3.2, available from : https://github.com/ehcache/ehcache3/releases
 * [5.3.2](/5.3.2), matches Ehcache 3.4.0, available from : https://github.com/ehcache/ehcache3/releases
 
+__latest tag currently points at ehcache 3.4.0 / Terracotta Server OSS 5.3.2__
+
 #### Important notes
 
 Those instructions are targeted at Docker version 1.13 and onwards - your host needs to have at least 2GB of RAM

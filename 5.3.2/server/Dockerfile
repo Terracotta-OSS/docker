@@ -13,8 +13,8 @@ RUN wget -q https://github.com/ehcache/ehcache3/releases/download/v3.4.0/ehcache
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 
-COPY conf/tc-config-active-passive.xml /terracotta/server/config/tc-config-active-passive.xml
-COPY conf/tc-config-single-node.xml /terracotta/server/config/tc-config-single-node.xml
+COPY conf/tc-config-active-passive.xml /terracotta/server/conf/tc-config-active-passive.xml
+COPY conf/tc-config-single-node.xml /terracotta/server/conf/tc-config-single-node.xml
 COPY conf/logback.xml /terracotta/server/lib/logback-test.xml
 COPY entrypoint.sh /terracotta/entrypoint.sh
 
@@ -39,7 +39,7 @@ ENV OFFHEAP_RESOURCE2_UNIT "MB"
 ENV OFFHEAP_RESOURCE2_SIZE "128"
 
 #ENTRYPOINT ["bin/start-tc-server.sh", "-f"]
-#CMD ["config/tc-config-single-node.xml"]
+#CMD ["conf/tc-config-single-node.xml"]
 
 # before starting the terracotta server, we update the tc-config.xml configuration file
 ENTRYPOINT /terracotta/entrypoint.sh
