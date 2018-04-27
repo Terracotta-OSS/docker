@@ -8,7 +8,7 @@ networks:
 services:
   client:
 #    build: sample-ehcache-client/
-    image: terracotta/sample-ehcache-client:4.3.4
+    image: terracotta/sample-ehcache-client:4.3.5
     networks:
      - terracotta-net
     environment:
@@ -17,7 +17,7 @@ services:
   terracotta-1:
     hostname: terracotta-1
 #    build: server/
-    image: terracotta/terracotta-server-oss:4.3.4
+    image: terracotta/terracotta-server-oss:4.3.5
     environment:
      - TC_SERVER1=terracotta-1
      - TC_SERVER2=terracotta-2
@@ -29,7 +29,7 @@ services:
   terracotta-2:
     hostname: terracotta-2
 #    build: server/
-    image: terracotta/terracotta-server-oss:4.3.4
+    image: terracotta/terracotta-server-oss:4.3.5
     environment:
      - TC_SERVER1=terracotta-1
      - TC_SERVER2=terracotta-2
