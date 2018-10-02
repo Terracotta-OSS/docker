@@ -8,13 +8,13 @@ The Terracotta 5.x OSS offering includes the following:
  *  Distributed In-Memory Data Management with fault-tolerance via Terracotta Server (1 stripe – active with optional mirror)
  *  In memory off-heap storage - take advantage of all the RAM in your server
 
-The current image is based on the [openjdk:8-jdk-alpine image](https://hub.docker.com/_/openjdk/), and adds [Terracotta 5.4.1 OSS on top of it](http://terracotta.org/downloads/open-source/catalog)
+The current image is based on the [openjdk:8-jdk-alpine image](https://hub.docker.com/_/openjdk/), and adds [Terracotta 5.4.3 OSS on top of it](http://terracotta.org/downloads/open-source/catalog)
 
 #### How to start your Terracotta Server(s) in Docker containers
 
 ##### Quick start : one active node
 
-    docker run --name tc-server -p 9410:9410 -d terracotta/terracotta-server-oss:5.4.1
+    docker run --name tc-server -p 9410:9410 -d terracotta/terracotta-server-oss:5.4.3
 
 A quick look at the logs :
 
@@ -28,7 +28,7 @@ It's now ready and waiting for clients !
 
 #### How to build this image
 
-To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/5.4.1/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
+To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/5.4.3/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
 
-    $ cd 5.4.1/server
-    $ docker build -t terracotta-server-oss:5.4.1 .
+    $ cd 5.4.3/server
+    $ docker build -t terracotta-server-oss:5.4.3 .

@@ -13,7 +13,7 @@ The client will either insert or retrieve values every 0.1 seconds
 
 You can start it up simply with :
 
-    docker run --name client -d terracotta/sample-ehcache-client:5.4.1
+    docker run --name client -d terracotta/sample-ehcache-client:5.4.3
 
 But you would get such an error message :
     
@@ -28,11 +28,11 @@ That would be because you need a Terracotta server running.
 
 You can run a terracotta server using (provided you built the terracotta image) :
 
-    docker run -d -p 9410:9410 --name terracotta terracotta/terracotta-server-oss:5.4.1
+    docker run -d -p 9410:9410 --name terracotta terracotta/terracotta-server-oss:5.4.3
 
 and then re try running the client, with :
 
-    docker run -d --link terracotta:terracotta --name client terracotta/sample-ehcache-client:5.4.1
+    docker run -d --link terracotta:terracotta --name client terracotta/sample-ehcache-client:5.4.3
     
 and checkout what's happening with :
 
@@ -41,7 +41,7 @@ and checkout what's happening with :
 
 #### How to build this image
 
-To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/5.4.1/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
+To build this [Dockerfile](https://github.com/Terracotta-OSS/docker/blob/master/5.4.3/server/Dockerfile), clone this [git repository](https://github.com/Terracotta-OSS/docker) and run :
 
-    $ cd 5.4.1/sample-ehcache-client
-    $ docker build -t sample-ehcache-client:5.4.1 .
+    $ cd 5.4.3/sample-ehcache-client
+    $ docker build -t sample-ehcache-client:5.4.3 .

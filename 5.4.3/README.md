@@ -1,4 +1,4 @@
-### Terracotta Server 5.4.1 Docker images
+### Terracotta Server 5.4.3 Docker images
 Instructions to build and execute are in those 2 sub folders :
 
  1. [server](/server/) : instructions to build and execute a Terracotta Server Array in Docker containers, according to several deployment scenarios
@@ -55,9 +55,9 @@ You can re use the same docker-compose.yml file :
 
     $ docker stack ps terracotta
     ID            NAME                       IMAGE                                   NODE  DESIRED STATE  CURRENT STATE           ERROR  PORTS
-    i88gj5reok4x  terracotta_client.1        terracotta/sample-ehcache-client:5.4.1  moby  Running        Running 23 seconds ago
-    hrzyj5z2uwkh  terracotta_terracotta-2.1  terracotta/terracotta-server-oss:5.4.1  moby  Running        Running 24 seconds ago
-    944cftq26cis  terracotta_terracotta-1.1  terracotta/terracotta-server-oss:5.4.1  moby  Running        Running 25 seconds ago
+    i88gj5reok4x  terracotta_client.1        terracotta/sample-ehcache-client:5.4.3  moby  Running        Running 23 seconds ago
+    hrzyj5z2uwkh  terracotta_terracotta-2.1  terracotta/terracotta-server-oss:5.4.3  moby  Running        Running 24 seconds ago
+    944cftq26cis  terracotta_terracotta-1.1  terracotta/terracotta-server-oss:5.4.3  moby  Running        Running 25 seconds ago
 
 You want to scale, right ? 
 

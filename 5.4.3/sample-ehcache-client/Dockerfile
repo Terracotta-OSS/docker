@@ -1,20 +1,18 @@
 # using the latest OpenJDK 8 update (see https://hub.docker.com/_/openjdk/ for more details)
 FROM openjdk:8-jdk-alpine
-MAINTAINER Anthony Dahanne <anthony.dahanne@softwareag.com>
+LABEL maintainers="Anthony Dahanne <anthony.dahanne@softwareag.com>"
 
 # add few utilities, upgrade tar
 RUN apk --update add tar openssl ca-certificates bash
 
 # downloading, untarring and removing the archive, link from https://github.com/ehcache/ehcache3/releases
-RUN wget -q https://repo1.maven.org/maven2/org/ehcache/ehcache-clustered/3.5.2/ehcache-clustered-3.5.2-kit.tgz \
+RUN wget -q https://repo1.maven.org/maven2/org/ehcache/ehcache-clustered/3.5.3/ehcache-clustered-3.5.3-kit.tgz \
   && mkdir /terracotta \
-  && tar xvzf ehcache-clustered-3.5.2-kit.tgz -C /terracotta --strip-components=1 \
-  && rm ehcache-clustered-3.5.2-kit.tgz
+  && tar xvzf ehcache-clustered-3.5.3-kit.tgz -C /terracotta --strip-components=1 \
+  && rm ehcache-clustered-3.5.3-kit.tgz
 
 ADD https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar /terracotta/client/lib/logback-classic-1.2.3.jar
 ADD https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar /terracotta/client/lib/logback-core-1.2.3.jar
-
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 
 COPY ./src/ /terracotta/
 COPY logback.xml /terracotta/logback.xml
