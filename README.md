@@ -14,6 +14,7 @@
 * [5.3.2](/5.3.2), matches Ehcache 3.4.0, available from : https://github.com/ehcache/ehcache3/releases
 * [5.4.3](/5.4.3), matches Ehcache 3.5.3, available from : https://github.com/ehcache/ehcache3/releases
 * [5.5.1](/5.5.1), matches Ehcache 3.6.1, available from : https://github.com/ehcache/ehcache3/releases
+[//]: # (needle_version)
 
 __latest tag currently points at ehcache 3.6.1 / Terracotta Server OSS 5.5.1__
 
@@ -21,5 +22,5 @@ __latest tag currently points at ehcache 3.6.1 / Terracotta Server OSS 5.5.1__
 
 Those instructions are targeted at Docker version 1.13 and onwards - your host needs to have at least 2GB of RAM
 Terracotta default ports changed from version 5.3 :
- * tsa port (clients to servers) from 9510 to 9410 and
+ * tsa port (clients to servers) from 9510 to 9410
  * group port (servers sync.) from 9530 to 9430
