@@ -1,0 +1,123 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tc-config
+data:
+  tc-config.xml: |
+    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <tc-config xmlns="http://www.terracotta.org/config">
+        <plugins>
+            <config>
+                <ohr:offheap-resources xmlns:ohr="http://www.terracotta.org/config/offheap-resource">
+                    <ohr:resource name="offheap-1" unit="MB">512</ohr:resource>
+                    <ohr:resource name="offheap-2" unit="MB">128</ohr:resource>
+                </ohr:offheap-resources>
+            </config>
+        </plugins>
+        <servers>
+            <server host="terracotta-0.terracotta" name="terracotta-0" bind="0.0.0.0">
+                <logs>stdout:</logs>
+                <tsa-port bind="0.0.0.0">9410</tsa-port>
+                <tsa-group-port bind="0.0.0.0">9430</tsa-group-port>
+            </server>
+            <server host="terracotta-1.terracotta" name="terracotta-1" bind="0.0.0.0">
+                <logs>/stdout:</logs>
+                <tsa-port bind="0.0.0.0">9410</tsa-port>
+                <tsa-group-port bind="0.0.0.0">9430</tsa-group-port>
+            </server>
+            <client-reconnect-window>120</client-reconnect-window>
+        </servers>
+    </tc-config>
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: caching-client
+  name: caching-client
+spec:
+  selector:
+      matchLabels:
+        app: caching-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: caching-client
+    spec:
+      containers:
+      - image: terracotta/sample-ehcache-client:5.5.1
+        name: caching-client
+        env:
+        - name: TERRACOTTA_SERVER_URL
+          value: "terracotta-0.terracotta:9410,terracotta-1.terracotta:9410"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: terracotta
+  labels:
+    app: terracotta
+  annotations:
+    # see https://github.com/kubernetes/kubernetes/issues/39363 , to have dns entries available immediately
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  ports:
+    - name: terracotta-port
+      port: 9410
+    - name: sync-port
+      port: 9430
+  clusterIP: None
+  selector:
+    app: terracotta
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: terracotta
+spec:
+  selector:
+    matchLabels:
+      app: terracotta
+  serviceName: terracotta
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: terracotta
+    spec:
+      initContainers:
+      - name: init-terracotta
+        # be careful with busybox versions : https://github.com/docker-library/busybox/issues/48
+        image: busybox:1.28
+        # check service name resolution works fine; if it can't resolve the service, a split brain could occur
+        command: ['sh', '-c', 'until nslookup terracotta; do echo "waiting for terracotta to resolve"; sleep 2; done;']
+      containers:
+        - name: terracotta
+          image: terracotta/terracotta-server-oss:5.5.1
+          command: ["bin/start-tc-server.sh"]
+          args: ["-f", "/config/tc-config.xml", "-n", "$(POD_NAME)"]
+          imagePullPolicy: Always
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          ports:
+            - containerPort: 9410
+              name: terracotta-port
+            - containerPort: 9430
+              name: sync-port
+          volumeMounts:
+          - name: config-volume
+            mountPath: /config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: tc-config

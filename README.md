@@ -18,6 +18,11 @@
 
 __latest tag currently points at ehcache 3.6.1 / Terracotta Server OSS 5.5.1__
 
+#### Kubernetes / Helm instructions
+
+* Look for the kubernetes folder in the latest version folder to have an example Kubernetes manifest file.
+* Using Helm ? Go and checkout our [Terracotta OSS Helm chart!](https://github.com/helm/charts/tree/master/stable/terracotta)
+
 #### Important notes
 
 Those instructions are targeted at Docker version 1.13 and onwards - your host needs to have at least 2GB of RAM
