@@ -1,0 +1,34 @@
+version: '3'
+
+networks:
+  terracotta-net:
+    driver: overlay
+
+services:
+  client:
+#    build: sample-ehcache-client/
+    image: terracotta/sample-ehcache-client:5.6.0
+    environment:
+     - TERRACOTTA_SERVER_URL=terracotta-1:9410,terracotta-2:9410
+    networks:
+     - terracotta-net
+
+  terracotta-1:
+    hostname: terracotta-1
+#    build: server/
+    image: terracotta/terracotta-server-oss:5.6.0
+    environment:
+     - TC_SERVER1=terracotta-1
+     - TC_SERVER2=terracotta-2
+    networks:
+     - terracotta-net
+
+  terracotta-2:
+    hostname: terracotta-2
+#    build: server/
+    image: terracotta/terracotta-server-oss:5.6.0
+    environment:
+     - TC_SERVER1=terracotta-1
+     - TC_SERVER2=terracotta-2
+    networks:
+     - terracotta-net
