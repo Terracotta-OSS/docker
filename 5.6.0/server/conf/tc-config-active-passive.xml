@@ -37,4 +37,7 @@ Terracotta, Inc., a Software AG company
       <tsa-group-port>9430</tsa-group-port>
     </server>
   </servers>
+  <failover-priority>
+    <availability/>
+  </failover-priority>
 </tc-config>
