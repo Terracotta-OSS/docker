@@ -15,9 +15,10 @@
 * [5.4.3](/5.4.3), matches Ehcache 3.5.3, available from : https://github.com/ehcache/ehcache3/releases
 * [5.5.1](/5.5.1), matches Ehcache 3.6.1, available from : https://github.com/ehcache/ehcache3/releases
 * [5.6.0](/5.6.0), matches Ehcache 3.7.0, available from : https://github.com/ehcache/ehcache3/releases
+* [5.6.4](/5.6.4), matches Ehcache 3.8.0, available from : https://github.com/ehcache/ehcache3/releases
 [//]: # (needle_version)
 
-__latest tag currently points at ehcache 3.7.0 / Terracotta Server OSS 5.6.0__
+__latest tag currently points at ehcache 3.8.0 / Terracotta Server OSS 5.6.4__
 
 #### Kubernetes / Helm instructions
 
